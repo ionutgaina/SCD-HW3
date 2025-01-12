@@ -2,6 +2,9 @@ services:
   adapter:
     build: ./adapter
     image: adapter
+    depends_on:
+      - mqtt
+      - influxdb
     environment:
       - DEBUG_DATA_FLOW=true
     networks:
@@ -27,6 +30,8 @@ services:
 
   grafana:
     image: grafana/grafana:latest
+    depends_on:
+      - influxdb
     ports:
       - "80:3000"
     volumes:
