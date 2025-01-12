@@ -1,0 +1,53 @@
+services:
+  adapter:
+    build: ./adapter
+    image: adapter
+    depends_on:
+      - mqtt
+      - influxdb
+    environment:
+      - DEBUG_DATA_FLOW=true
+    networks:
+      - network-mqtt
+      - network-adapter
+
+  mqtt:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./broker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - network-mqtt
+
+  influxdb:
+    image: influxdb:1.8
+    volumes:
+      - volume-influxdb:/var/lib/influxdb
+    networks:
+      - network-adapter
+      - network-grafana
+
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      - influxdb
+    ports:
+      - "80:3000"
+    volumes:
+      - volume-grafana:/var/lib/grafana
+      - ./grafana:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=asistent
+      - GF_SECURITY_ADMIN_PASSWORD=grafanaSCD2024
+    networks:
+      - network-grafana
+
+networks:
+  network-mqtt:
+  network-adapter:
+  network-grafana:
+
+volumes:
+  volume-influxdb:
+  volume-grafana:
