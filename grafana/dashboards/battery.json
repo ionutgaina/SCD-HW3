@@ -18,9 +18,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": "InfluxDB",
@@ -38,8 +37,9 @@
             "axisSoftMax": 100,
             "axisSoftMin": 0,
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 24,
+            "fillOpacity": 12,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -81,8 +81,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 11,
+        "w": 23,
         "x": 0,
         "y": 0
       },
@@ -99,9 +99,10 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.4.0",
       "targets": [
         {
-          "alias": "NUME_STAT, IE",
+          "alias": "$1",
           "datasource": "InfluxDB",
           "groupBy": [
             {
@@ -174,10 +175,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 11,
+        "w": 23,
         "x": 0,
-        "y": 8
+        "y": 11
       },
       "id": 2,
       "options": {
@@ -192,10 +193,10 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
-          "alias": "NUME_STAT, IE",
+          "alias": "$1",
           "datasource": "InfluxDB",
           "groupBy": [
             {
@@ -238,6 +239,7 @@
         {
           "id": "reduce",
           "options": {
+            "labelsToFields": false,
             "reducers": [
               "lastNotNull",
               "min",
@@ -253,11 +255,11 @@
             "includeByName": {},
             "indexByName": {},
             "renameByName": {
-              "Field": "Serie de timp (STAT, IE)",
-              "Last *": "Valoare curentă",
-              "Max": "Valoarea maximă",
-              "Mean": "Media valorilor",
-              "Min": "Valoarea minimă"
+              "Field": "METRIC",
+              "Last *": "CURRENT",
+              "Max": "MAX",
+              "Mean": "AVG",
+              "Min": "MIN"
             }
           }
         }
@@ -265,20 +267,21 @@
       "type": "table"
     }
   ],
-  "refresh": "30m",
-  "schemaVersion": 39,
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Battery Dashboard",
-  "uid": "9a70e8f2-6d88-4df9-9d1b-4935d902a978",
-  "version": 1,
+  "uid": "f98b9512-209f-4258-bb4d-73ef51f3a3a2",
+  "version": 9,
   "weekStart": ""
 }

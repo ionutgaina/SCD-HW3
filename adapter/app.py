@@ -40,10 +40,10 @@ def setup_influxdb():
 def save_data(location: str, station: str, data: dict):
     if "timestamp" not in data:
         timestamp = datetime.now().strftime(DATE_FORMAT)
-        logging.debug(f"Using current time as timestamp: {timestamp}")
+        logging.info(f"Data timestamp is: {timestamp}")
     else:
         timestamp = datetime.strptime(data["timestamp"], DATE_FORMAT)
-        logging.debug(f"Using provided timestamp: {timestamp}")
+        logging.info(f"Data timestamp is NOW")
 
     bd_data = []
 
@@ -60,17 +60,16 @@ def save_data(location: str, station: str, data: dict):
             }
         )
 
-        logging.debug(f"Saving data: {bd_data}")
+        logging.info(f"{location}.{station}.{key} {str(value)}")
 
     DB_CLIENT.write_points(bd_data)
 
 
 def on_message(client, userdata, message):
     if not re.match(r"^[\w-]+/[\w-]+$", message.topic):
-        logging.debug(f"Invalid topic: {message.topic}")
         return
 
-    logging.debug(f"Received message on topic {message.topic}")
+    logging.info(f"Received a message by topic [{message.topic}]")
 
     location, station = message.topic.split("/")
 

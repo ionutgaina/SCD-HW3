@@ -18,9 +18,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": "InfluxDB",
@@ -37,8 +36,9 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 24,
+            "fillOpacity": 8,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -80,8 +80,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 15,
+        "h": 9,
+        "w": 23,
         "x": 0,
         "y": 0
       },
@@ -98,9 +98,10 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.4.0",
       "targets": [
         {
-          "alias": "$0.$1",
+          "alias": "$1.$2",
           "datasource": "InfluxDB",
           "groupBy": [
             {
@@ -180,10 +181,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 15,
+        "h": 19,
+        "w": 23,
         "x": 0,
-        "y": 12
+        "y": 9
       },
       "id": 2,
       "options": {
@@ -204,10 +205,10 @@
           }
         ]
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
-          "alias": "$0.$1",
+          "alias": "$1.$2",
           "datasource": "InfluxDB",
           "groupBy": [
             {
@@ -261,8 +262,9 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "30s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
@@ -274,7 +276,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "UPB IoT Data",
-  "uid": "f2c847a1-7c7d-42b8-b6a5-bf7f2f4c3b57",
-  "version": 4,
+  "uid": "b3d738b9-2f4f-4d47-9c8e-5d383c8d5fa1",
+  "version": 10,
   "weekStart": ""
 }
