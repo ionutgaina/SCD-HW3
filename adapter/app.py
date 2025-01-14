@@ -27,10 +27,9 @@ def setup_logging(debug: bool):
 
 def setup_influxdb():
     try:
-        client = InfluxDBClient(host=INFLUX_HOST, database=INFLUX_DB)
-        existing_dbs = client.get_list_database()
-        if not any(db["name"] == INFLUX_DB for db in existing_dbs):
-            client.create_database(INFLUX_DB)
+        client = InfluxDBClient(host=INFLUX_HOST)
+        client.create_database(INFLUX_DB)
+        client.switch_database(INFLUX_DB)
         return client
     except Exception as e:
         logging.error(f"Failed to connect to InfluxDB: {e}")
