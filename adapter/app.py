@@ -39,10 +39,10 @@ def setup_influxdb():
 def save_data(location: str, station: str, data: dict):
     if "timestamp" not in data:
         timestamp = datetime.now().strftime(DATE_FORMAT)
-        logging.info(f"Data timestamp is: {timestamp}")
+        logging.info(f"Data timestamp is NOW")
     else:
         timestamp = datetime.strptime(data["timestamp"], DATE_FORMAT)
-        logging.info(f"Data timestamp is NOW")
+        logging.info(f"Data timestamp is: {timestamp}")
 
     bd_data = []
 
